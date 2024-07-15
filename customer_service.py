@@ -12,25 +12,33 @@
 import random
 
 
-service_tickets =    { "uniqueId": [117] , "client_name" : ["Daniel"], "issue": ["frozen screen"], "status": ["open"]
-
-
+service_tickets =    {  "uniqueId": [117] , "client_name" : ["Daniel"], "issue": ["frozen screen"], "status": ["open"]
+ 
+ 
  }
-
-new_ticket = {
-}
 
 
 #Open a new service ticket.
 
 def add_ticket(): 
+    new_id_num = random.randint(1, 100000)
+    if "uniqueId" in service_tickets:
+        service_tickets["uniqueId"].append(new_id_num)
 
-    service_tickets["uniqueId"] = (random.randint(1, 100000)) 
-    new_ticket["client_name"] = input("What is the client's name? ")
-    new_ticket["issue"] = input("What issue are they having? ") 
-    new_ticket["status"] = input("What's the status of this issue(open/closed)? ")   
+    input_name = input("What is the client's name? ")
+    if "client_name" in service_tickets:
+        service_tickets["client_name"].append(input_name)
+   
+
+    input_issue = input("What issue are they having? ")
+    if "issue" in service_tickets:
+        service_tickets["issue"].append(input_issue)
+
+    input_status = input("What's the status of this issue(open/closed)? ")   
+    if "status" in service_tickets:
+        service_tickets["status"].append(input_status)
  
-    service_tickets.update(new_ticket)
+    print(service_tickets)
     
    
 
@@ -57,16 +65,27 @@ def status_update():
 
 def display_tickets():
     
- 
-    for value in service_tickets["uniqueId"]:
-        value = service_tickets.get("uniqueId")
-        print(f'Client Id : {value}')
-        for client in service_tickets["client_name"]:
+ for key in service_tickets:
+        value = service_tickets.get(key)
+        print( key , value, sep= ":" )
+        
+for item in service_tickets.items():
+        print(item)
+        
+        """ value = service_tickets.get("uniqueId")
+            print(f'Client ID: {value}')
+
+            client = service_tickets.get["client_name"]
             print(f'Name: {client}')
-        for issue in service_tickets["issue"]:
-            print(f'issue {issue}')
-        for status in service_tickets["status"]:
-            print(f'Status: {status}', end ="\n")
+
+            issue = service_tickets.get["issue"]
+            print(f'Issue: {issue}')
+
+            status = service_tickets.get["status"]
+            print(f'Status: {status}', end ="\n") """
+    
+
+
 
     
 
